@@ -2,39 +2,43 @@
 
 describe('template spec', () => {
   beforeEach(function () {
-    cy.visit('./src/index.html')
+    cy.visit('./src/index.html') // o ponto . no início representa o caminho da raíz do projeto
   })
 
-  // it('Preenche os campos obrigatórios e envia o formulário', () => {
-  //   preencheCamposObrigatorios('Daniboy', 'Andrioli', 'aew@gmail.com', 'Nada não', 500)
-  //   cy.get('.button').click() //.button é uma class
+  it('Preenche os campos obrigatórios e envia o formulário', () => {
+    preencheCamposObrigatorios('Daniboy', 'Andrioli', 'aew@gmail.com', 'Nada não', 500)
+    cy.get('.button').click() //.button é uma class
 
-  //   cy.get('.success').should('be.visible')
-  // })
+    cy.get('.success').should('be.visible')
+  })
 
-  // it('Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
-  //   preencheCamposObrigatorios('Ixurú', "Cabelo Twonight", "ix!gmail.com", "Nada não")
+  it('Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
+    preencheCamposObrigatorios('Ixurú', "Cabelo Twonight", "ix!gmail.com", "Nada não")
 
-  //   cy.get('.button').click()
-  //   cy.get('.error').should('be.visible')
-  // })
+    cy.get('.button').click()
+    cy.get('.error').should('be.visible')
+  })
 
-  // it('Valor não numérico no campo "telefone" não pode ser digitado', () => {
-  //   cy.get('[id=phone]').type("AEEEEEE MEU!!").should('be.empty')
-  // })
+  it('Valor não numérico no campo "telefone" não pode ser digitado', () => {
+    cy.get('[id=phone]').type("AEEEEEE MEU!!").should('be.empty')
+  })
 
-  // it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
-  //   preencheCamposObrigatorios('Daniboy', 'Andrioli', 'aew@gmail.com', 'Nada não')
-  //   cy.get('[id=phone-checkbox]').click().should('be.checked')
-  //   cy.get('.button').click()
-  //   cy.get('.error').should('be.visible')
-  // })
+  it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+    preencheCamposObrigatorios('Daniboy', 'Andrioli', 'aew@gmail.com', 'Nada não')
+    cy.get('[id=phone-checkbox]').click().should('be.checked')
+    cy.get('.button').click()
+    cy.get('.error').should('be.visible')
+  })
 
-  // it('Preenche e limpa o campo', () => {
-  //   cy.get('[id=firstName]').type("Aew aew!!").clear().should('have.value', '')
-  // })
+  it('Preenche e limpa o campo', () => {
+    cy.get('[id=firstName]').type("Aew aew!!").clear().should('have.value', '')
+  })
 
-  it('envia o formuário com sucesso usando um comando customizado', () => {
+  it('utilizando o contains', () => {
+    cy.contains('.field', 'E-mail').type("Yahoooooooo")
+  })
+
+  it.only('envia o formuário com sucesso usando um comando customizado', () => {
     let formulario = {
       firstName: "Danozo",
       lastName: "Andrioli",
@@ -43,8 +47,13 @@ describe('template spec', () => {
     }
 
     cy.fillMandatoryFields(formulario)
+    cy.clickSubmit()
+    cy.get('.success').should('be.visible')
   })
 
+  it.only('verificando o título do site', () => {
+    cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
+  })
 })
 
 function preencheCamposObrigatorios(firstName, lastName, email, message, delayMessage) {
