@@ -4,5 +4,4 @@ cypress/downloads/
 cypress/screenshots/
 cypress/videos/
 cypress/fixtures/
-cypress/support/
 package-lock.json
