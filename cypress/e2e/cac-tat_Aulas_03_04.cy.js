@@ -28,6 +28,7 @@ describe.only('Aula 04 - Suite testes radio button', () => {
 
     it('Check opção elogio', () => {
         cy.get('input[value=elogio]').check().should('be.checked')
+        // cy.get('input[type=radio][value=elogio]').check().should('be.checked') //também pode ser assim, com duas propriedades=valor ao lado
     })
 
     it('Check opção feedback', () => {

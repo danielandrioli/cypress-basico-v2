@@ -38,7 +38,7 @@ describe('template spec', () => {
     cy.contains('.field', 'E-mail').type("Yahoooooooo")
   })
 
-  it.only('envia o formuário com sucesso usando um comando customizado', () => {
+  it('envia o formuário com sucesso usando um comando customizado', () => {
     let formulario = {
       firstName: "Danozo",
       lastName: "Andrioli",
@@ -51,7 +51,7 @@ describe('template spec', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it.only('verificando o título do site', () => {
+  it('verificando o título do site', () => {
     cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
   })
 })
