@@ -35,8 +35,8 @@ describe.only('Aula 04 - Suite testes radio button', () => {
     })
 
     it('Check em cada opção', () => {
-        cy.get('#support-type').each( () => {
-            //TERMINAR AQUI!!
+        cy.get('#support-type').find('[type=radio]').each( ($element) => {
+            cy.get($element).check().should('be.checked')
         })
     })
 })
