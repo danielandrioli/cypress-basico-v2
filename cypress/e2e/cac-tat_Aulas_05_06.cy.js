@@ -48,4 +48,15 @@ describe.only('Aula 06 - Upload de arquivos', () => {
             expect(elemento[0].files[0].name).equals('C:\\Users\\danie\\OneDrive\\Imagens\\Tatuagens\\coruja.jpg')
         })
     })
+
+
+    it.only('Upload de arquivo com um alias para a fixture', () => {
+        cy.fixture('example.json').as('sampleFile')
+        cy.get('#file-upload').selectFile('@sampleFile')
+            .should((elemento) => {
+                console.log(elemento)
+                expect(elemento[0].files[0].name).equals('example.json') //aqui não dá pra usar o alias, só no selectFile
+            })
+    })
+    
 })
