@@ -20,7 +20,7 @@ describe('Aula 07 - Novas abas abertas', () => {
         cy.get('#privacy a').invoke('attr', 'target', '_self').click()
 
         cy.title('Central de Atendimento ao Cliente TAT - Política de privacidade')
-        .should('be.equal', 'Central de Atendimento ao Cliente TAT - Política de privacidade')
+        .should('be.equal', 'Central de Atendimento ao Cliente AEWW - Política de privacidade')
     })
 
 })
