@@ -43,7 +43,7 @@ describe('Aula 11 - Parando e avançando no relógio', () => {
         cy.get('#open-text-area').invoke('val', longText).should('have.value', longText)
     })
 
-    it.only('Faz uma requisição HTTP', () => {
+    it('Faz uma requisição HTTP', () => {
         cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html')
         .should((response) => {
             console.log(response)
@@ -53,6 +53,11 @@ describe('Aula 11 - Parando e avançando no relógio', () => {
             expect(headers.server).equals('AmazonS3')
             expect(body).include('CAC TAT')
         })
+    })
+
+    it.only('Encontre o gato', () => {
+        cy.get('#cat').should('not.be.visible')
+        cy.get('#cat').invoke('show').should('be.visible')
     })
 }
 )
